@@ -1,9 +1,9 @@
 ﻿using DionicioPujols_AP1_P1.Context;
-using DionicioPujols_AP1_P1.Model;
+using DionicioPujols_AP1_P1.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace DionicioPujols_AP1_P1.Service;
+namespace DionicioPujols_AP1_P1.Services;
 
 public class Model1Service(IDbContextFactory<Contexto>
 contextFactory) : Aplicada1.Core.IService<Model1, int>

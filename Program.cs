@@ -1,6 +1,6 @@
 using DionicioPujols_AP1_P1.Components;
 using DionicioPujols_AP1_P1.Context;
-using DionicioPujols_AP1_P1.Model;
+using DionicioPujols_AP1_P1.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +12,7 @@ builder.Services.AddRazorComponents()
 var Constr = builder.Configuration.GetConnectionString("SqlConstr");
 builder.Services.AddDbContextFactory<Contexto>(options => options.UseSqlServer(Constr));
 
-builder.Services.AddScoped<Model1>();
+builder.Services.AddScoped<Model1Service>();
 
 builder.Services.AddBlazorBootstrap();
 
