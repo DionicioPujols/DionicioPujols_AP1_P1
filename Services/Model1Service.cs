@@ -6,9 +6,9 @@ using System.Linq.Expressions;
 namespace DionicioPujols_AP1_P1.Services;
 
 public class Model1Service(IDbContextFactory<Contexto>
-contextFactory) : Aplicada1.Core.IService<Model1, int>
+contextFactory) : Aplicada1.Core.IService<Autor, int>
 {
-    public Task<Model1?> Buscar(int id)
+    public Task<Autor?> Buscar(int id)
     {
         throw new NotImplementedException();
     }
@@ -18,12 +18,12 @@ contextFactory) : Aplicada1.Core.IService<Model1, int>
         throw new NotImplementedException();
     }
 
-    public Task<List<Model1>> GetList(Expression<Func<Model1, bool>> criterio)
+    public Task<List<Autor>> GetList(Expression<Func<Autor, bool>> criterio)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> Guardar(Model1 entidad)
+    public Task<bool> Guardar(Autor entidad)
     {
         throw new NotImplementedException();
     }
