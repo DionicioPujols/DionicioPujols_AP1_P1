@@ -17,5 +17,5 @@ public class Autor
     public DateTime? FechaNacimiento { get; set; }
 
     [Required(ErrorMessage ="Debe ingresar el sueldo obligatoriamente")]
-    public double sueldo { get; set; }
+    public int sueldo { get; set; }
 }
