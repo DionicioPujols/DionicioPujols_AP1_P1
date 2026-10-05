@@ -1,29 +1,80 @@
-﻿@page "/Model1/Index"
+﻿@page "/Model1/Create"
 
 @inject AutorService autorService
 @inject ToastService toastService
+@inject NavigationManager navigationManager
 
-<PageTitle>Registro</PageTitle>
-<div class="container">
-    <div class="card shadow-lg">
-        <div class="card-header d-flex justify-content-between align-center mb-4">
-            <h5 class="card-title">Registro</h5>
-        </div>
+<PageTitle>Registro Autores</PageTitle>
+<EditForm Model="autor" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator/>
 
-        <div class="card-body">
-            <div class="mt-3">
-                <label class="col-form-label"><strong>Filtrar por</strong></label>
-            </div>
-            <div class="col-4">
-                <label class="col-form-label"><strong>Busqueda</strong></label>
+    <div class="container">
+        <div class="card shadow-lg">
+            <div class="card-header text-center">
+                <h5 class="card-title">Crear Autor</h5>
             </div>
 
-            <div class="card-footer d-flex justify-content-between align-items-center">
+            <div class="card-body">
+             
+                @*Autor*@
+                <div class="mt-3">
+                    <label class="form-label"><strong>Autor</strong></label>
+                    <InputText class="form-control" @bind-Value="autor.Nombre"></InputText>
+                    <ValidationMessage For="(() => autor.Nombre)"/>
+                </div>
+
+                @*Nacionalidad*@
+                <div class="mt-3">
+                    <label class="form-label"><strong>Nacionalidad</strong></label>
+                    <InputText class="form-control" @bind-Value="autor.Nacionalidad"></InputText>
+                    <ValidationMessage For="(() => autor.Nacionalidad)" />
+                </div>
+
+                @*FechaNacimiento*@
+                <div class="mt-3">
+                    <label class="form-label"><strong>Fecha de nacimiento</strong></label>
+                    <InputDate class="form-control" @bind-Value="autor.FechaNacimiento"></InputDate>
+                    <ValidationMessage For="(() => autor.FechaNacimiento)" />
+                </div>
+
+                @*sueldo*@
+                <div class="mt-3">
+                    <label class="form-label"><strong>Sueldo</strong></label>
+                    <InputNumber class="form-control" @bind-Value="autor.sueldo"></InputNumber>
+                    <ValidationMessage For="(() => autor.sueldo)" />
+                </div>
+            </div>
+
+            <div class="card-footer text-center">
+                <a href="/Model1/Index/" class="btn btn-secondary ms-2"><i class="bi bi-arrow-left"></i>Volver</a>
+                <button type="submit" class="btn btn-primary m-2"><i class="bi bi-floppy"></i> Guardar</button>
             </div>
         </div>
     </div>
-</div>
+</EditForm>
 
 @code {
 
+    public Autor autor { get; set; } = new Autor();
+
+    public async Task Guardar()
+    {
+        autor.Nombre = autor.Nombre!.Trim();
+        var ExisteNombre = await autorService.GetList(a => a.Nombre!.ToLower() == autor.Nombre.ToLower());
+        if (ExisteNombre.Any())
+        {
+            toastService.ShowError("ya existe un autor con este nombre");
+            return;
+        }
+        var crear = await autorService.Guardar(autor);
+        if (crear)
+        {
+            toastService.ShowSuccess("Se ha guardado correctamente este autor");
+            navigationManager.NavigateTo("/Model1/Index");
+        }
+        else
+        {
+            toastService.ShowError("No se pudo crear el registro del autor");
+        }
+    }
 }
