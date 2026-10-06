@@ -7,7 +7,7 @@
 <div class="container">
     <div class="card shadow-lg">
         <div class="card-header d-flex justify-content-between align-center mb-4">
-            <h5 class="card-title">Registro</h5>
+            <h5 class="card-title">Registro de autores</h5>
             <a href="/Model1/Create" class="btn btn-primary"> <span class="bi bi-plus-square mt-3"></span> Crear</a>
         </div>
 
@@ -41,12 +41,10 @@
                         <PropertyColumn Property="@(a => a.IdAutor)" title="AutorId" Sortable="true"/>
                         <PropertyColumn Property="@(a => a.Nombre)" title="Nombre" Sortable="true" />
                         <PropertyColumn Property="@(a => a.Nacionalidad)" title="Nacionalidad" Sortable="true" />
-                        <PropertyColumn Property="@(a => a.FechaNacimiento)" title="FechaNacimiento" Sortable="true" />
+                        <PropertyColumn Property="@(a => a.FechaNacimiento)" title="FechaNacimiento" Format="dd/mm/yyyy" Sortable="true" />
                         <PropertyColumn Property="@(a => a.sueldo)" title="sueldo" Sortable="true" />
                         <TemplateColumn title="Opciones" Align="Align.Center">
                             <a href="/Model1/Edit/@context.IdAutor" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                                    @onclick="() => AutorIdDelete = context.IdAutor"<i class="bi bi-trash"></i></button>
                         </TemplateColumn>
                     </QuickGrid>
                 </div>
@@ -59,25 +57,6 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="deleteModalLabel">Confirmar Eliminación</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de que desea eliminar este registro de autor?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @onclick="EliminarAutor">Eliminar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 @code {
     public List<Autor> ListaAutores { get; set; } = new List<Autor>();
     IQueryable<Autor>? AutorQueryable;
@@ -110,18 +89,5 @@
             ListaAutores = await autorService.GetList(a => true);
 
         AutorQueryable = ListaAutores.AsQueryable();
-    }
-
-    public async Task EliminarAutor()
-    {
-        var Eliminado = await autorService.Eliminar(AutorIdDelete);
-        if (Eliminado)
-        {
-            toastService.ShowSuccess("El Autor fue eliminado correctamente!");
-        }
-        else
-        {
-            toastService.ShowError("No se pudo eliminar el autor del registro!");
-        }
     }
 }
