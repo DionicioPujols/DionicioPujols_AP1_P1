@@ -45,8 +45,8 @@
                         <PropertyColumn Property="@(a => a.sueldo)" title="sueldo" Sortable="true" />
                         <TemplateColumn title="Opciones" Align="Align.Center">
                             <a href="/Model1/Edit/@context.IdAutor" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
-                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModalLabel"
-                            @onclick="() => AutorIdDelete = context.IdAutor"><i class="bi bi-trash"></i></button>
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                    @onclick="() => AutorIdDelete = context.IdAutor"<i class="bi bi-trash"></i></button>
                         </TemplateColumn>
                     </QuickGrid>
                 </div>
