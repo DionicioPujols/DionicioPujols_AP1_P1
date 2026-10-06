@@ -68,7 +68,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ¿Está seguro de que desea eliminar este préstamo?
+                ¿Está seguro de que desea eliminar este registro de autor?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -77,7 +77,6 @@
         </div>
     </div>
 </div>
-
 
 @code {
     public List<Autor> ListaAutores { get; set; } = new List<Autor>();
@@ -125,6 +124,4 @@
             toastService.ShowError("No se pudo eliminar el autor del registro!");
         }
     }
-
-
 }

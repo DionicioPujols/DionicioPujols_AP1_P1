@@ -20,7 +20,7 @@ namespace DionicioPujols_AP1_P1.Migrations
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Nacionalidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    sueldo = table.Column<int>(type: "int", nullable: false)
+                    sueldo = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

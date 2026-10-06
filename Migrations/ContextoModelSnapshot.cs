@@ -41,8 +41,8 @@ namespace DionicioPujols_AP1_P1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("sueldo")
-                        .HasColumnType("int");
+                    b.Property<double>("sueldo")
+                        .HasColumnType("float");
 
                     b.HasKey("IdAutor");
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DionicioPujols_AP1_P1.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20261005232019_Inicial")]
+    [Migration("20261006001008_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -44,8 +44,8 @@ namespace DionicioPujols_AP1_P1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("sueldo")
-                        .HasColumnType("int");
+                    b.Property<double>("sueldo")
+                        .HasColumnType("float");
 
                     b.HasKey("IdAutor");
 
