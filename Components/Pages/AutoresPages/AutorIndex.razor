@@ -1,4 +1,4 @@
-@page "/Model1/Index"
+@page "/Autor/Index"
 
 @inject AutorService autorService
 @inject ToastService toastService
@@ -8,7 +8,7 @@
     <div class="card shadow-lg">
         <div class="card-header d-flex justify-content-between align-center mb-4">
             <h5 class="card-title">Registro de autores</h5>
-            <a href="/Model1/Create" class="btn btn-primary"> <span class="bi bi-plus-square mt-3"></span> Crear</a>
+            <a href="/Autor/Create" class="btn btn-primary"> <span class="bi bi-plus-square mt-3"></span> Crear</a>
         </div>
 
         <div class="card-body">
@@ -45,7 +45,7 @@
                         <PropertyColumn Property="@(a => a.FechaNacimiento)" title="FechaNacimiento" Format="dd/mm/yyyy" Sortable="true" />
                         <PropertyColumn Property="@(a => a.sueldo)" title="sueldo" Sortable="true" />
                         <TemplateColumn title="Opciones" Align="Align.Center">
-                            <a href="/Model1/Edit/@context.IdAutor" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
+                            <a href="/Autor/Edit/@context.IdAutor" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a>
                         </TemplateColumn>
                     </QuickGrid>
                 </div>
